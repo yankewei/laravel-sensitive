@@ -1,0 +1,21 @@
+{
+    "name": "yankewei/laravel-sensitive",
+    "description": "过滤敏感词汇的laravel包，使用DFA算法",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yankewei",
+            "email": "15833997749@163.com"
+        }
+    ],
+    "require": {
+        "php":">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yankewei\\LaravelSensitive\\": "src/"
+        }
+    }
+
+}
