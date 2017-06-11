@@ -23,7 +23,7 @@ class Sensitive
      */
     private $disturbList = array();
 
-    public function __construct($disturbList = array())
+    public function interference($disturbList = array())
     {
         $this->disturbList = $disturbList;
     }
