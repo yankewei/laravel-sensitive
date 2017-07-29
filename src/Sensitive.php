@@ -32,9 +32,9 @@ class Sensitive
      * 添加敏感词
      * @param array $txtWords
      */
-    public function addWords(array $wordsList)
+    public function addWords($filename)
     {
-        foreach ($wordsList as $words) {
+        foreach ($this->getGeneretor($filename) as $words) {
             $nowWords = &$this->trieTreeMap;
             $len = mb_strlen($words);
             for ($i = 0; $i < $len; $i++) {
@@ -45,6 +45,24 @@ class Sensitive
                 $nowWords = &$nowWords[$word];
             }
         }
+    }
+
+    /**
+     * 使用yield生成器
+     * @param $filename
+     * @return \Generator
+     * @throws \Exception
+     */
+    protected function getGeneretor($filename)
+    {
+        $handle = fopen($filename, 'r');
+        if (!$handle) {
+            throw new \Exception('read file failed');
+        }
+        while (!feof($handle)) {
+            yield str_replace(['\'', ' ', PHP_EOL, ','], '', fgets($handle));
+        }
+        fclose($handle);
     }
 
     /**
